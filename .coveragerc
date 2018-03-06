@@ -1,0 +1,3 @@
+[run]
+include = carv/*
+omit = *migrations*, *tests*
