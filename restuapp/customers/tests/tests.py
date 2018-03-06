@@ -19,7 +19,6 @@ class CustomersAPITestCases(APITestCase):
         resp = self.client.get(
             path=reverse('customer-list') + '?phone={}'.format(self.customer1.phone),
         )
-        import pdb; pdb.set_trace();
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(len(resp.data), 1)
         self.assertEqual(resp.data[0]['id'], self.customer1.id)
