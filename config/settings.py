@@ -34,6 +34,20 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
 ]
+THIRD_PARTY_APPS = [
+    'rest_framework',
+    'django_filters',
+    'rest_framework_swagger',
+
+    # dev packages
+    'django_extensions'
+]
+
+LOCAL_APPS = [
+    'restuapp.core.apps.CoreConfig',
+    'restuapp.customers.apps.CustomersConfig',
+    'restuapp.orders.apps.OrdersConfig',
+]
 
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -98,3 +112,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
+
+# -------------------------------API - RestFramework-----------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+    # testing
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.MultiPartRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 50,
+}
